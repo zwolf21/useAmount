@@ -128,7 +128,10 @@ class DrugInfoScraper:
 		
 	def _norm_price(self, price_str):
 		regx = re.compile('[^\d]')
-		return regx.sub('', price_str)
+		try:
+			return int(regx.sub('', price_str))
+		except:
+			return 0
 
 	def _pkg_num_from(self, pkg_str):
 		regx = re.compile('(\d+)정|(\d+)caps?|(\d+)T|(\d+)개|(\d+)바이알|(\d+)캡슐|(\d+)C|(\d+)CAPS|(\d+)|(\d+)EA|(\d+)TAB|(\d+)tab|(\d+)캅셀|(\d+)펜|(\d+)V|(\d+)P|(\d+)포')
